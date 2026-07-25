@@ -1,0 +1,51 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Tokens/Consuming" />
+
+# Consuming the tokens
+
+`design-system/tokens.json` (W3C design-tokens format) is the machine-readable
+source of truth. Three ready-made formats derive from it — if you change one,
+sync the others (and `gen.ts` if the brand colors themselves moved).
+
+## CSS custom properties
+
+```css
+@import "@overcast-sh/branding/design-system/tokens.css";
+/* + fonts.css if the app serves /fonts/ */
+```
+
+Everything is `--oc-*`. Light/dark theming is built in: the media query
+carries the OS preference, and stamping `data-theme="dark|light"` on `<html>`
+overrides it in both directions. Style components through the tokens only.
+
+```css
+.button-primary {
+  background: var(--oc-accent);
+  border-radius: var(--oc-radius-control);
+  font-family: var(--oc-font-mono);
+}
+```
+
+## Tailwind v4
+
+```css
+@import "tailwindcss";
+@import "@overcast-sh/branding/design-system/tokens.tailwind.css";
+```
+
+Gives `bg-oc-ink`, `text-oc-signal`, `border-oc-surface-line`,
+`font-oc-mono`, `rounded-oc-card`, `animate-oc-blink`, …
+
+## Tailwind v3
+
+```ts
+import overcast from "@overcast-sh/branding/design-system/tailwind.preset.ts";
+export default { presets: [overcast], content: ["./src/**/*.{ts,tsx}"] };
+```
+
+## For agents
+
+The rules that go with these tokens live in [AGENTS.md](?path=/docs/brand-overview--docs)
+at the repo root — accent swaps with surface, mono is the voice, one animation,
+never hand-edit generated assets. Read it before building anything branded.

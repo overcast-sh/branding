@@ -1,0 +1,47 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Row, Swatch } from "./brand";
+
+<Meta title="Brand/Color" />
+
+# Color
+
+The palette is navy-grounded with one accent — **Signal** — that always swaps
+with the surface: `#1273C4` on light grounds, `#5FB8FF` on dark. Never use the
+dark-surface accent on white; it fails contrast. Neutrals are hue-biased toward
+the brand blue — never pure grey.
+
+## Brand
+
+<Row>
+  <Swatch name="Ink" hex="#16222E" use="icon tile · dark cards · headings on light" />
+  <Swatch name="Night" hex="#10161D" use="page background, dark" />
+  <Swatch name="Cloud slate" hex="#33536F" use="cloud fill on dark" />
+  <Swatch name="Cloud mist" hex="#C4D8EA" use="cloud fill on light" />
+  <Swatch name="Signal (light)" hex="#1273C4" use="accent on light · AA on white" />
+  <Swatch name="Signal (dark)" hex="#5FB8FF" use="accent on dark" />
+  <Swatch name="Cursor glow (light)" hex="#3E97DF" use="cursor bar on light" />
+  <Swatch name="Cursor glow (dark)" hex="#8FD0FF" use="cursor bar on dark" />
+</Row>
+
+## Text & surfaces
+
+<Row>
+  <Swatch name="Text / light" hex="#16222E" use="primary text on light" />
+  <Swatch name="Body / light" hex="#33465A" use="body text on light" />
+  <Swatch name="Muted / light" hex="#54718A" use="secondary on light" />
+  <Swatch name="Text / dark" hex="#DCEBF8" use="primary text on dark" />
+  <Swatch name="Body / dark" hex="#A9C2D8" use="body text on dark" />
+  <Swatch name="Muted / dark" hex="#7FA8C9" use="secondary on dark" />
+  <Swatch name="Line / light" hex="#D5E2EE" use="borders on light" />
+  <Swatch name="Line / dark" hex="#24384C" use="borders on dark" />
+</Row>
+
+## Semantic
+
+Status colors sit beside the accent — they never replace it.
+
+<Row>
+  <Swatch name="Success" hex="#2E9E6B" use="healthy · running · pass" />
+  <Swatch name="Warning" hex="#C08A2D" use="degraded · pending" />
+  <Swatch name="Danger" hex="#C9564A" use="error · failed · destructive" />
+</Row>

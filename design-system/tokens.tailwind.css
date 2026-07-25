@@ -1,0 +1,45 @@
+/* Overcast brand tokens for Tailwind CSS v4 (@theme).
+ * Usage:  @import "tailwindcss";  @import "@overcast-sh/branding/design-system/tokens.tailwind.css";
+ * Generates utilities like bg-oc-ink, text-oc-signal, font-oc-mono, rounded-oc-card.
+ * For Tailwind v3, use tailwind.preset.ts instead.
+ * Source of truth: tokens.json — keep in sync. */
+
+@theme {
+  --color-oc-ink: #16222E;
+  --color-oc-night: #10161D;
+  --color-oc-cloud-slate: #33536F;
+  --color-oc-cloud-mist: #C4D8EA;
+  --color-oc-signal: #1273C4;
+  --color-oc-signal-dark: #5FB8FF;
+  --color-oc-cursor: #3E97DF;
+  --color-oc-cursor-dark: #8FD0FF;
+  --color-oc-text: #16222E;
+  --color-oc-text-body: #33465A;
+  --color-oc-text-muted: #54718A;
+  --color-oc-text-dark: #DCEBF8;
+  --color-oc-text-dark-body: #A9C2D8;
+  --color-oc-text-dark-muted: #7FA8C9;
+  --color-oc-surface: #F4F8FC;
+  --color-oc-surface-card: #FFFFFF;
+  --color-oc-surface-line: #D5E2EE;
+  --color-oc-surface-soft: #E3F0FB;
+  --color-oc-surface-dark: #10161D;
+  --color-oc-surface-dark-card: #16222E;
+  --color-oc-surface-dark-line: #24384C;
+  --color-oc-surface-dark-soft: #1A2E42;
+  --color-oc-success: #2E9E6B;
+  --color-oc-warning: #C08A2D;
+  --color-oc-danger: #C9564A;
+
+  --font-oc-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  --font-oc-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-oc-control: 6px;
+  --radius-oc-card: 10px;
+
+  --animate-oc-blink: oc-blink 1.1s steps(1) infinite;
+  @keyframes oc-blink {
+    0%, 49.9% { opacity: 1; }
+    50%, 99.9% { opacity: 0; }
+  }
+}

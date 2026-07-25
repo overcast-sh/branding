@@ -1,0 +1,43 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Row, Card, Do } from "./brand";
+
+<Meta title="Brand/Logo" />
+
+# Logo & marks
+
+## Lockup
+
+The wordmark is always lowercase **overcast**, bold, in the brand mono.
+The tagline is optional below 160px width — drop it rather than shrink it.
+
+<Row>
+  <Card label="light" surface="light"><img src="/logo/overcast-logo-light.svg" alt="" /></Card>
+  <Card label="dark" surface="dark"><img src="/logo/overcast-logo-dark.svg" alt="" /></Card>
+</Row>
+
+## The mark
+
+Clearspace = the chevron's height (≈ 0.4 × cloud height) on all sides.
+Minimum size: 24px bare, 16px tiled.
+
+<Row>
+  <Card label="full color · light" surface="light"><img src="/mark/mark-light.svg" width="96" alt="" /></Card>
+  <Card label="full color · dark" surface="dark"><img src="/mark/mark-dark.svg" width="96" alt="" /></Card>
+  <Card label="mono · white" surface="dark"><img src="/mark/mark-mono-white.svg" width="96" alt="" /></Card>
+  <Card label="mono · ink" surface="light"><img src="/mark/mark-mono-ink.svg" width="96" alt="" /></Card>
+</Row>
+
+## Usage
+
+<Do good>Use the tiled icon whenever the background is unknown or busy.</Do>
+<Do good>Use mono marks for stickers, engraving, single-color print.</Do>
+<Do good={false}>Don't rotate, outline, shadow, or gradient-fill the mark.</Do>
+<Do good={false}>Don't scale large SVGs down — use the per-size icons.</Do>
+<Do good={false}>Don't set the wordmark in a proportional font or capitalize it.</Do>
+<Do good={false}>No orange, no radio/sound waves — that's Overcast.fm's territory.</Do>
+
+## Social
+
+<Row>
+  <Card surface="dark" label="github social card 1280×640"><img src="/social/github-social-card.svg" width="512" alt="" /></Card>
+</Row>

@@ -1,0 +1,31 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Row, Card } from "./brand";
+
+<Meta title="Brand/Motion" />
+
+# Motion
+
+One animation is sanctioned: **the blinking cursor** — 1.1s, hard steps (no
+easing, like a real terminal). It appears in loading states and nowhere else.
+Everything else moves at most 120ms ease-out on hover, and nothing moves for
+users with `prefers-reduced-motion`.
+
+<Row>
+  <Card surface="dark" label="loading state (SMIL, self-contained)"><img src="/loading/overcast-loader.svg" width="96" alt="Overcast loader" /></Card>
+  <Card surface="dark" label="CSS version" pad={28}>
+    <div style={{ fontFamily: "var(--oc-font-mono)", fontSize: 28, color: "#5FB8FF" }}>
+      &gt;<span className="oc-cursor-blink" style={{ color: "#8FD0FF" }}>_</span>
+    </div>
+  </Card>
+</Row>
+
+## CSS
+
+```css
+/* from design-system/tokens.css */
+@keyframes oc-blink { 0%, 49.9% { opacity: 1; } 50%, 99.9% { opacity: 0; } }
+.oc-cursor-blink { animation: oc-blink var(--oc-blink) steps(1) infinite; }
+@media (prefers-reduced-motion: reduce) { .oc-cursor-blink { animation: none; } }
+```
+
+Tailwind: `animate-oc-blink` (from the preset / @theme tokens).

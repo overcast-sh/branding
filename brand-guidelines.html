@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overcast · Brand Guidelines</title>
+<style>
+  :root {
+    --bg: #F4F8FC;
+    --surface: #FFFFFF;
+    --ink: #16222E;
+    --body: #33465A;
+    --muted: #54718A;
+    --line: #D5E2EE;
+    --accent: #1273C4;
+    --accent-soft: #E3F0FB;
+    --tile: #16222E;
+    --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10161D; --surface: #16222E; --ink: #DCEBF8; --body: #A9C2D8;
+      --muted: #7FA8C9; --line: #24384C; --accent: #5FB8FF; --accent-soft: #1A2E42;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10161D; --surface: #16222E; --ink: #DCEBF8; --body: #A9C2D8;
+    --muted: #7FA8C9; --line: #24384C; --accent: #5FB8FF; --accent-soft: #1A2E42;
+  }
+  :root[data-theme="light"] {
+    --bg: #F4F8FC; --surface: #FFFFFF; --ink: #16222E; --body: #33465A;
+    --muted: #54718A; --line: #D5E2EE; --accent: #1273C4; --accent-soft: #E3F0FB;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--body); font-family: var(--sans); line-height: 1.6; }
+  main { max-width: 880px; margin: 0 auto; padding: 48px 28px 96px; }
+  header.hero { display: flex; align-items: center; gap: 24px; padding: 24px 0 40px; border-bottom: 1px solid var(--line); }
+  header.hero img { width: 88px; height: 88px; }
+  h1 { font-family: var(--mono); font-size: 34px; letter-spacing: -1px; color: var(--ink); margin: 0; }
+  .tagline { font-family: var(--mono); font-size: 12px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-top: 6px; }
+  h2 { font-family: var(--mono); font-size: 18px; color: var(--ink); margin: 56px 0 8px; }
+  h2::before { content: "$ "; color: var(--accent); }
+  h3 { font-size: 14px; color: var(--ink); margin: 28px 0 8px; text-transform: uppercase; letter-spacing: 1px; }
+  p { max-width: 64ch; margin: 8px 0; }
+  .grid { display: grid; gap: 16px; margin: 20px 0; }
+  .g2 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .g4 { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .card span { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .card.on-dark { background: #10161D; }
+  .card.on-light { background: #FFFFFF; border-color: #D5E2EE; }
+  .card.on-light span { color: #54718A; }
+  .swatch { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+  .swatch .chip { height: 64px; }
+  .swatch .meta { padding: 10px 12px; background: var(--surface); }
+  .swatch .meta b { display: block; font-size: 12px; color: var(--ink); }
+  .swatch .meta code { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+  th { color: var(--ink); font-family: var(--mono); font-weight: 600; font-size: 12px; }
+  td code { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .rule { display: flex; gap: 10px; align-items: baseline; margin: 6px 0; }
+  .rule .ok { color: #2E9E6B; font-family: var(--mono); }
+  .rule .no { color: #C9564A; font-family: var(--mono); }
+  .note { background: var(--accent-soft); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; font-size: 14px; max-width: none; }
+  img { max-width: 100%; }
+  .constr { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .constr img { flex: 0 0 340px; border-radius: 10px; }
+  .constr div { flex: 1 1 300px; }
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <img src="mark/mark-light.svg" alt="Overcast mark" id="hero-mark">
+    <div>
+      <h1>overcast</h1>
+      <div class="tagline">Brand guidelines · v1.0 · July 2026</div>
+    </div>
+  </header>
+
+  <h2>the idea</h2>
+  <p>Overcast is the AWS cloud, brought down to your machine. The mark says exactly that:
+  a <strong>cloud grounded on a flat baseline</strong> — landed, not floating — with a
+  <strong>shell prompt <code style="font-family:var(--mono)">&gt;_</code></strong> inside it.
+  The cloud you normally reach over the internet, running in your terminal. The domain is
+  <code style="font-family:var(--mono)">overcast.sh</code>; the prompt is the brand.</p>
+
+  <h2>construction</h2>
+  <div class="constr">
+    <img src="brand/construction.svg" alt="Construction diagram">
+    <div>
+      <p>The silhouette is the union of three circles whose radii follow a golden
+      progression — <em>r</em>, <em>r·√φ</em>, <em>r·φ</em> — resting on a shared baseline.
+      The overall bounding box is φ:1 (width:height).</p>
+      <p>The chevron's apex sits at the golden division of the cloud's width,
+      x&nbsp;=&nbsp;(1−1/φ)·w ≈ 0.382w. The cursor bar sits on the chevron's lower
+      shoulder line, ending near 0.75w.</p>
+      <p>Every size is generated from this same geometry — never scale one SVG down;
+      use the size-specific files, which reduce stroke detail and snap to the pixel grid.</p>
+    </div>
+  </div>
+
+  <h2>the mark</h2>
+  <div class="grid g4">
+    <div class="card on-light"><img src="mark/mark-light.svg" width="96" alt=""><span>full color · light</span></div>
+    <div class="card on-dark"><img src="mark/mark-dark.svg" width="96" alt=""><span>full color · dark</span></div>
+    <div class="card on-dark"><img src="mark/mark-mono-white.svg" width="96" alt=""><span>mono · white</span></div>
+    <div class="card on-light"><img src="mark/mark-mono-ink.svg" width="96" alt=""><span>mono · ink</span></div>
+  </div>
+  <p><strong>Clearspace:</strong> keep a margin equal to the chevron's height (≈ 0.4 × cloud height)
+  free on all sides. <strong>Minimum size:</strong> 24px for the bare mark, 16px for the tiled icon.</p>
+
+  <h2>lockup</h2>
+  <div class="grid g2">
+    <div class="card on-light"><img src="logo/overcast-logo-light.svg" alt="Light lockup"><span>light surfaces</span></div>
+    <div class="card on-dark"><img src="logo/overcast-logo-dark.svg" alt="Dark lockup"><span>dark surfaces</span></div>
+  </div>
+  <p>The wordmark is always lowercase <strong>overcast</strong>, set bold in the brand mono.
+  The tagline is optional below 160px width — drop it rather than shrink it.</p>
+
+  <h2>icons</h2>
+  <div class="grid g4">
+    <div class="card"><img src="icons/icon-16.svg" width="16" height="16" alt=""><span>16 — chevron+cursor only</span></div>
+    <div class="card"><img src="icons/icon-32.svg" width="32" height="32" alt=""><span>32 — favicon</span></div>
+    <div class="card"><img src="icons/icon-48.svg" width="48" height="48" alt=""><span>48</span></div>
+    <div class="card"><img src="icons/icon-96.svg" width="96" height="96" alt=""><span>96 / 256 — app & org avatar</span></div>
+  </div>
+  <p>The dark navy tile ships with every icon so it works on any surface. Use
+  <code style="font-family:var(--mono)">favicon/favicon.svg</code> directly — modern browsers
+  accept SVG favicons; rasterize to .ico only for legacy support.</p>
+
+  <h2>color</h2>
+  <div class="grid g4">
+    <div class="swatch"><div class="chip" style="background:#16222E"></div><div class="meta"><b>Ink</b><code>#16222E · tile, dark surface, text on light</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#10161D"></div><div class="meta"><b>Night</b><code>#10161D · page background dark</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#33536F"></div><div class="meta"><b>Cloud slate</b><code>#33536F · cloud fill on dark</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#C4D8EA"></div><div class="meta"><b>Cloud mist</b><code>#C4D8EA · cloud fill on light</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#5FB8FF"></div><div class="meta"><b>Signal (dark)</b><code>#5FB8FF · prompt & accent on dark</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#1273C4"></div><div class="meta"><b>Signal (light)</b><code>#1273C4 · prompt & accent on light, AA on white</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#8FD0FF"></div><div class="meta"><b>Cursor glow</b><code>#8FD0FF · cursor on dark</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#7FA8C9"></div><div class="meta"><b>Mist text</b><code>#7FA8C9 · secondary text on dark</code></div></div>
+  </div>
+  <p>The accent always switches with the surface: <strong>Signal light</strong> on light grounds,
+  <strong>Signal dark</strong> on dark grounds. Never use the dark-surface accent on white — it
+  fails contrast.</p>
+
+  <h2>typography</h2>
+  <table>
+    <tr><th>Role</th><th>Face</th><th>Notes</th></tr>
+    <tr><td>Wordmark & headings</td><td><code>JetBrains Mono / Cascadia Code (bold)</code></td><td>lowercase wordmark, tight tracking (−0.02em)</td></tr>
+    <tr><td>Labels & taglines</td><td><code>same mono, regular</code></td><td>uppercase, wide tracking (+0.15em)</td></tr>
+    <tr><td>Body / docs</td><td><code>system-ui stack</code></td><td>the mono is flavor; body text stays quiet</td></tr>
+  </table>
+  <p style="margin-top:12px">SVG lockups currently use the system mono stack
+  (<code style="font-family:var(--mono)">ui-monospace → Cascadia → Menlo → Consolas</code>).
+  Before print or pixel-perfect web use, set the wordmark in the chosen webfont and outline it.</p>
+
+  <h2>usage</h2>
+  <div class="rule"><span class="ok">✓</span> Use the tiled icon whenever the background is unknown or busy.</div>
+  <div class="rule"><span class="ok">✓</span> Use mono marks for stickers, engraving, single-color print.</div>
+  <div class="rule"><span class="ok">✓</span> Blink the cursor (loader asset) in loading states — it's the one place motion belongs.</div>
+  <div class="rule"><span class="no">✗</span> Don't rotate, outline, shadow, or gradient-fill the mark.</div>
+  <div class="rule"><span class="no">✗</span> Don't scale large SVGs down below their design size — swap to the smaller icon.</div>
+  <div class="rule"><span class="no">✗</span> Don't set the wordmark in a proportional font or capitalize it.</div>
+  <div class="rule"><span class="no">✗</span> Don't use orange or add radio/sound waves — that's Overcast.fm's (the podcast app) territory. Our cloud is navy, grounded, and carries a prompt.</div>
+
+  <h2>files</h2>
+  <table>
+    <tr><th>Path</th><th>Use</th></tr>
+    <tr><td><code>logo/overcast-logo-{light,dark}.svg</code></td><td>README, website header, docs</td></tr>
+    <tr><td><code>mark/mark-{light,dark}.svg</code></td><td>square contexts on known surfaces</td></tr>
+    <tr><td><code>mark/mark-mono-{white,ink}.svg</code></td><td>single-color uses</td></tr>
+    <tr><td><code>icons/icon-{16,32,48,96,256}.svg</code></td><td>favicons, app icons, GitHub org avatar (rasterize 256)</td></tr>
+    <tr><td><code>favicon/favicon.svg</code></td><td>drop-in <code>&lt;link rel="icon"&gt;</code></td></tr>
+    <tr><td><code>loading/overcast-loader.svg</code></td><td>loading states (blinking cursor)</td></tr>
+    <tr><td><code>social/github-social-card.svg</code></td><td>rasterize to 1280×640 PNG for GitHub/OG</td></tr>
+    <tr><td><code>brand/construction.svg</code></td><td>this page; geometry reference</td></tr>
+  </table>
+
+  <p class="note" style="margin-top:40px">All assets are generated from
+  <code style="font-family:var(--mono)">gen.ts</code> — a parametric build where the cloud,
+  prompt, palette, and every per-size variant derive from one geometric definition. To adjust
+  the brand, change the parameters and regenerate; don't hand-edit the SVGs.</p>
+</main>
+<script>
+  // hero mark follows theme
+  const m = window.matchMedia("(prefers-color-scheme: dark)");
+  const hero = document.getElementById("hero-mark");
+  const set = () => { hero.src = (document.documentElement.dataset.theme || (m.matches ? "dark" : "light")) === "dark" ? "mark/mark-dark.svg" : "mark/mark-light.svg"; };
+  m.addEventListener("change", set); new MutationObserver(set).observe(document.documentElement, { attributes: true }); set();
+</script>
+</body>
+</html>

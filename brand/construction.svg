@@ -1,0 +1,17 @@
+<svg width="480" height="393.59999999999997" viewBox="0 0 480 393.59999999999997" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="480" height="393.59999999999997" fill="#10161D"/>
+  <path d="M 127.01 322.49 A 67.01 67.01 0 1 1 127.66 188.47 A 108.43 108.43 0 0 1 327.04 152.36 A 85.24 85.24 0 1 1 334.76 322.49 Z" fill="#33536F" fill-opacity="0.35" stroke="#89BCE2" stroke-width="1.6"/>
+  <circle cx="127.01" cy="255.48" r="67.01" stroke="#5FB8FF" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.55"/>
+  <circle cx="127.01" cy="255.48" r="2" fill="#5FB8FF"/>
+  <text x="127.01" y="180.46609768998815" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#7FA8C9">r</text>
+  <circle cx="234.24" cy="208.43" r="108.43" stroke="#5FB8FF" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.55"/>
+  <circle cx="234.24" cy="208.43" r="2" fill="#5FB8FF"/>
+  <text x="234.24" y="91.99922834363572" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#7FA8C9">r·φ</text>
+  <circle cx="334.76" cy="237.25" r="85.24" stroke="#5FB8FF" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.55"/>
+  <circle cx="334.76" cy="237.25" r="2" fill="#5FB8FF"/>
+  <text x="334.76" y="144.00699947104866" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#7FA8C9">r·√φ</text>
+  <line x1="97.01" y1="322.49" x2="384.76" y2="322.49" stroke="#54718A" stroke-width="1" stroke-dasharray="2 4"/>
+  <text x="388.76" y="326.49" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="#54718A">baseline</text>
+  <text x="240" y="357.59999999999997" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="11" fill="#7FA8C9">width : height = φ : 1 · radii in golden progression r, r√φ, rφ</text>
+  <text x="240" y="375.59999999999997" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="11" fill="#7FA8C9">apex of &gt; at (1−1/φ)·w · cursor on chevron baseline</text>
+</svg>

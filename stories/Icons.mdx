@@ -1,0 +1,36 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Row, Card } from "./brand";
+
+<Meta title="Brand/Icons" />
+
+# Icons
+
+Every icon ships on the ink tile so it works on any surface. Each size is
+**generated separately** from the master geometry with detail reduction — the
+16px icon drops the cloud outline and keeps chevron + cursor. Never scale a
+big SVG down; swap files.
+
+<Row>
+  <Card label="16 — chevron + cursor only"><img src="/icons/icon-16.svg" width="16" height="16" alt="" /></Card>
+  <Card label="32 — favicon"><img src="/icons/icon-32.svg" width="32" height="32" alt="" /></Card>
+  <Card label="48"><img src="/icons/icon-48.svg" width="48" height="48" alt="" /></Card>
+  <Card label="96"><img src="/icons/icon-96.svg" width="96" height="96" alt="" /></Card>
+  <Card label="256 — app / org avatar"><img src="/icons/icon-256.svg" width="128" height="128" alt="" /></Card>
+</Row>
+
+## Zoomed (design check)
+
+<Row>
+  <Card label="16 @ 8×"><img src="/icons/icon-16.svg" width="128" height="128" style={{ imageRendering: "pixelated" }} alt="" /></Card>
+  <Card label="32 @ 4×"><img src="/icons/icon-32.svg" width="128" height="128" style={{ imageRendering: "pixelated" }} alt="" /></Card>
+</Row>
+
+## Web integration
+
+```html
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+```
+
+PNG derivatives for every size live in `png/`.

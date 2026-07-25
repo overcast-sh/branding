@@ -1,0 +1,47 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Type } from "./brand";
+
+<Meta title="Brand/Typography" />
+
+# Typography
+
+Two faces, clear division of labor. **JetBrains Mono** is the brand voice —
+wordmark, headings, labels, code, numbers. The **system sans** carries body
+text so the mono stays special. Never set long-form prose in the mono.
+
+<Type
+  role="display"
+  note="mono bold 34 · tracking −0.03em"
+  css={{ fontFamily: "var(--oc-font-mono)", fontWeight: 700, fontSize: 34, letterSpacing: "-0.03em" }}
+  sample="the cloud, landed"
+/>
+<Type
+  role="heading"
+  note="mono bold 18"
+  css={{ fontFamily: "var(--oc-font-mono)", fontWeight: 700, fontSize: 18 }}
+  sample="27 services emulated locally"
+/>
+<Type
+  role="label"
+  note="mono 12 · caps · tracking +0.15em"
+  css={{ fontFamily: "var(--oc-font-mono)", fontSize: 12, letterSpacing: "0.15em", textTransform: "uppercase" }}
+  sample="local aws emulator"
+/>
+<Type
+  role="body"
+  note="system sans 16 / 1.6"
+  css={{ fontFamily: "var(--oc-font-sans)", fontSize: 16, lineHeight: 1.6 }}
+  sample="Overcast emulates the most-used AWS APIs with high fidelity, so your integration tests run against localhost instead of a bill."
+/>
+<Type
+  role="code"
+  note="mono 14"
+  css={{ fontFamily: "var(--oc-font-mono)", fontSize: 14 }}
+  sample="aws --endpoint-url http://localhost.overcast.sh:4566 s3 ls"
+/>
+
+## Rules
+
+- Headings in mono get tight tracking; uppercase labels get wide tracking — never both at once
+- Tabular numerals (`font-variant-numeric: tabular-nums`) wherever digits align in columns
+- The wordmark is typography: lowercase `overcast`, mono bold, tracking −0.02em — never recreate it casually; use the lockup SVGs

@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Do } from "./brand";
+
+<Meta title="Brand/Voice" />
+
+# Voice & writing
+
+Overcast talks like a good CLI: precise, calm, a little dry. It never
+oversells — the product's whole promise is *less* drama than the real cloud.
+
+## Principles
+
+- **Plain over clever.** "Runs AWS APIs on localhost" beats "reimagines cloud development".
+- **Numbers with receipts.** Every performance claim states what was measured and how.
+- **Honest about limits.** A `501` with an explanation beats a divergent `200` — in the product and in the copy.
+- **Lowercase wordmark, sentence-case everything else.** Headings aren't Title Case.
+
+## Examples
+
+<Do good>Start Overcast, point your SDK at localhost:4566, run your tests.</Do>
+<Do good>27 services. One binary. No credentials.</Do>
+<Do good={false}>Revolutionize your cloud-native developer experience!</Do>
+<Do good={false}>Blazingly fast ⚡ (no measurement, no conditions)</Do>
+
+## Terminology
+
+| Say | Not |
+| --- | --- |
+| emulator | mock, simulator, fake |
+| service coverage | feature parity |
+| runs locally | on-premise |
+| `overcast serve` | "the daemon" (in user-facing copy) |

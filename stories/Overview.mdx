@@ -1,0 +1,36 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Row, Card } from "./brand";
+
+<Meta title="Brand/Overview" />
+
+# overcast
+
+**The AWS cloud, brought down to your machine.**
+
+The mark is a cloud grounded on a flat baseline — landed, not floating — with a
+shell prompt `>_` inside it. The cloud you normally reach over the internet,
+running in your terminal. The domain is `overcast.sh`; the prompt is the brand.
+
+<Row>
+  <Card label="light surfaces" surface="light"><img src="/logo/overcast-logo-light.svg" alt="Overcast lockup, light" /></Card>
+  <Card label="dark surfaces" surface="dark"><img src="/logo/overcast-logo-dark.svg" alt="Overcast lockup, dark" /></Card>
+</Row>
+
+## Construction
+
+The silhouette is the union of three circles whose radii follow a golden
+progression — *r*, *r·√φ*, *r·φ* — resting on a shared baseline, in a φ:1
+bounding box. The chevron's apex sits at the golden division of the width,
+(1−1/φ)·w. Every asset is generated from this geometry by `gen.ts` — the
+diagram below is drawn by the same code, so it can never drift from reality.
+
+<Row>
+  <Card surface="dark" label="construction"><img src="/brand/construction.svg" width="380" alt="Construction diagram" /></Card>
+</Row>
+
+## One-line rules
+
+- The accent swaps with the surface — `#5FB8FF` on dark, `#1273C4` on light
+- The mono is the voice; body text stays quiet in the system sans
+- One animation: the blinking cursor
+- Never hand-edit an asset — change `gen.ts`, run `npm run build`
