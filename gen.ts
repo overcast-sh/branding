@@ -339,8 +339,36 @@ function loaderSVG(): string {
 }
 files["loading/overcast-loader.svg"] = loaderSVG();
 
-// Favicon (SVG) — same as icon-32 geometry
-files["favicon/favicon.svg"] = markSVG({ size: 32, pad: 3.5, mode: "dark", traceLevel: 3, strokeW: 1, traceW: 1.4, dotR: 1.5, tile: true, rx: 7, variant: "prompt" });
+// Favicon (SVG) — icon-32 geometry, untiled; palette follows the browser's
+// color scheme via an embedded style block (light default, dark via media
+// query). The .ico derivative rasterizes from icons/icon-*.svg, not this file.
+function faviconSVG(): string {
+  const size = 32, pad = 3.5, prec = 2;
+  const { W, H } = cloudGeometry();
+  const w = size - pad * 2;
+  const h = (w * H) / W;
+  const y = (size - h) / 2 - size * 0.01;
+  const fit = { x: pad, y, w, h };
+  const cp = cloudPath(fit, prec);
+  const prompt = promptContent(fit, "__CHEV__", "__CURS__", 1.4, prec, false)
+    .replace('stroke="__CHEV__"', 'class="chev"')
+    .replace('stroke="__CURS__"', 'class="curs"');
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .cloud { fill: ${C.cloudOnLight}; stroke: ${C.cloudOnLightStroke}; }
+    .chev { stroke: ${C.accentLight}; }
+    .curs { stroke: ${C.accentGlowLight}; }
+    @media (prefers-color-scheme: dark) {
+      .cloud { fill: ${C.cloudOnDark}; stroke: ${C.cloudOnDarkStroke}; }
+      .chev { stroke: ${C.accentDark}; }
+      .curs { stroke: ${C.accentGlow}; }
+    }
+  </style>
+  <path class="cloud" d="${cp}" stroke-width="1"/>
+  ${prompt}
+</svg>`;
+}
+files["favicon/favicon.svg"] = faviconSVG();
 
 // GitHub social card 1280x640
 function socialSVG(): string {
