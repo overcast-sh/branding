@@ -4,7 +4,7 @@
 
 The Overcast name, logomark, and all visual brand assets in this repository
 (`logo/`, `mark/`, `icons/`, `favicon/`, `loading/`, `social/`, `brand/`,
-`png/`, `alternates/`) are © the Overcast project. All rights reserved.
+`png/`) are © the Overcast project. All rights reserved.
 
 You may use unmodified assets to refer to Overcast (articles, talks,
 integrations, link badges). Do not modify the marks, use them to imply

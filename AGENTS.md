@@ -12,7 +12,7 @@ holds the tokens. SVGs and PNGs are build outputs.
 ## Hard rules
 
 1. **Never hand-edit files in** `logo/ mark/ icons/ favicon/ loading/ social/
-   brand/ png/ alternates/`. Change `gen.ts` (geometry/palette) and run
+   brand/ png/`. Change `gen.ts` (geometry/palette) and run
    `npm run build`. Commit the regenerated outputs together with the script
    change.
 2. **Design with the tokens.** `design-system/tokens.css` (custom properties,

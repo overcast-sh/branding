@@ -14,7 +14,6 @@ const config: StorybookConfig = {
     { from: "../brand", to: "/brand" },
     { from: "../png", to: "/png" },
     { from: "../fonts", to: "/fonts" },
-    { from: "../alternates", to: "/alternates" },
   ],
 };
 

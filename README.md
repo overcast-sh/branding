@@ -41,8 +41,6 @@ npm run build     # gen.ts (SVGs, outlined wordmark) + rasterize.ts (PNG/ICO)
   and bundles the multi-resolution `favicon.ico`.
 - **`build.mts`** — runs both.
 
-`alternates/` holds the earlier circuit-trace variant for reference.
-
 ## Design system
 
 `design-system/` holds the tokens in four formats (keep in sync;

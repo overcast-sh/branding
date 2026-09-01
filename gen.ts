@@ -12,7 +12,7 @@ type Pt = { x: number; y: number };
 type Circle = Pt & { r: number };
 type Fit = { x: number; y: number; w: number; h?: number };
 type Mode = "dark" | "light";
-type Variant = "circuit" | "prompt";
+type Variant = "prompt";
 
 // ---------- optional wordmark outlining ----------
 // If ./fonts/JetBrainsMono-{Bold,Regular}.ttf exist next to this script and
@@ -151,25 +151,6 @@ const C = {
   subLight: "#7FA8C9",
 } as const;
 
-// ---------- trace (circuit alternate) ----------
-// Node positions as fractions of the cloud's fitted box.
-const TRACE4: Pt[] = [
-  { x: 0.18, y: 0.62 },
-  { x: 0.18, y: 0.8 },
-  { x: 0.472, y: 0.8 },
-  { x: 0.472, y: 0.46 },
-  { x: 0.8, y: 0.46 },
-  { x: 0.8, y: 0.8 },
-];
-const TRACE4_DOTS = [0, 2, 3, 5];
-const TRACE3: Pt[] = [
-  { x: 0.2, y: 0.76 },
-  { x: 0.52, y: 0.76 },
-  { x: 0.52, y: 0.46 },
-  { x: 0.82, y: 0.46 },
-];
-const TRACE3_DOTS = [0, 1, 3];
-
 // ---------- prompt (>_) content ----------
 // Chevron apex at golden x division; cursor bar on same baseline.
 function promptContent(fit: Fit & { h: number }, accent: string, glow: string, sw: number, prec: number, minimal: boolean): string {
@@ -182,20 +163,6 @@ function promptContent(fit: Fit & { h: number }, accent: string, glow: string, s
   if (minimal) return chev;
   const curs = `<line x1="${px(apexX + 0.11)}" y1="${py(chevBotY)}" x2="${px(apexX + 0.37)}" y2="${py(chevBotY)}" stroke="${glow}" stroke-width="${sw}" stroke-linecap="round"/>`;
   return `${chev}\n  ${curs}`;
-}
-
-function tracePts(pts: Pt[], fit: Fit & { h: number }, prec = 2): Pt[] {
-  return pts.map((p) => ({
-    x: round(fit.x + p.x * fit.w, prec),
-    y: round(fit.y + p.y * fit.h, prec),
-  }));
-}
-function polyline(pts: Pt[], stroke: string, w: number): string {
-  const s = pts.map((p) => `${p.x},${p.y}`).join(" ");
-  return `<polyline points="${s}" fill="none" stroke="${stroke}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
-}
-function dots(pts: Pt[], idx: number[], fill: string, r: number): string {
-  return idx.map((i) => `<circle cx="${pts[i].x}" cy="${pts[i].y}" r="${r}" fill="${fill}"/>`).join("\n  ");
 }
 
 // ---------- mark builders ----------
@@ -214,7 +181,7 @@ interface MarkOpts {
 }
 
 // Bare or tiled mark; mode = the surface it sits on.
-function markSVG({ size, pad, mode, traceLevel, strokeW, traceW, dotR, tile, rx, prec = 2, variant = "circuit" }: MarkOpts): string {
+function markSVG({ size, pad, mode, traceLevel, strokeW, traceW, dotR, tile, rx, prec = 2, variant = "prompt" }: MarkOpts): string {
   const onDark = mode === "dark";
   const cloudFill = onDark ? C.cloudOnDark : C.cloudOnLight;
   const cloudStroke = onDark ? C.cloudOnDarkStroke : C.cloudOnLightStroke;
@@ -228,17 +195,7 @@ function markSVG({ size, pad, mode, traceLevel, strokeW, traceW, dotR, tile, rx,
   const fit = { x: pad, y, w, h };
 
   const cp = cloudPath(fit, prec);
-  let traces = "";
-  if (variant === "prompt") {
-    traces = promptContent(fit, accent, onDark ? C.accentGlow : C.accentGlowLight, traceW, prec, traceLevel <= 2);
-  } else if (traceLevel >= 3) {
-    const pts = tracePts(traceLevel === 4 ? TRACE4 : TRACE3, fit, prec);
-    const dotIdx = traceLevel === 4 ? TRACE4_DOTS : TRACE3_DOTS;
-    traces = `${polyline(pts, accent, traceW)}\n  ${dots(pts, dotIdx, accent, dotR)}`;
-  } else if (traceLevel === 2) {
-    const pts = tracePts([{ x: 0.22, y: 0.66 }, { x: 0.78, y: 0.66 }], fit, prec);
-    traces = `${polyline(pts, accent, traceW)}\n  ${dots(pts, [0, 1], accent, dotR)}`;
-  }
+  const traces = promptContent(fit, accent, onDark ? C.accentGlow : C.accentGlowLight, traceW, prec, traceLevel <= 2);
 
   const tileRect = tile ? `<rect width="${size}" height="${size}" rx="${rx}" fill="${C.ink}"/>\n  ` : "";
   const strokeAttr = strokeW > 0 ? ` stroke="${cloudStroke}" stroke-width="${strokeW}"` : "";
@@ -249,7 +206,7 @@ function markSVG({ size, pad, mode, traceLevel, strokeW, traceW, dotR, tile, rx,
 }
 
 // Horizontal lockup: mark + wordmark
-function lockupSVG({ mode, variant = "circuit" }: { mode: Mode; variant?: Variant }): string {
+function lockupSVG({ mode, variant = "prompt" }: { mode: Mode; variant?: Variant }): string {
   const onDark = mode === "dark";
   const text = onDark ? C.textLight : C.textDark;
   const sub = onDark ? C.subLight : C.subDark;
@@ -278,17 +235,17 @@ const OUT = process.argv[2] || "out";
 
 const files: Record<string, string> = {};
 
-for (const variant of ["circuit", "prompt"] as Variant[]) {
-  const v = variant === "prompt" ? "" : "alternates/";
-  for (const d of ["icons", "logo", "mark"]) mkdirSync(join(OUT, v, d), { recursive: true });
-  files[`${v}icons/icon-96.svg`] = markSVG({ size: 96, pad: 11, mode: "dark", traceLevel: 4, strokeW: 1.6, traceW: 2.4, dotR: 3, tile: true, rx: 20, variant });
-  files[`${v}icons/icon-48.svg`] = markSVG({ size: 48, pad: 5, mode: "dark", traceLevel: 4, strokeW: 1.2, traceW: 1.7, dotR: 2, tile: true, rx: 10, variant });
-  files[`${v}icons/icon-32.svg`] = markSVG({ size: 32, pad: 3.5, mode: "dark", traceLevel: 3, strokeW: 1, traceW: 1.4, dotR: 1.5, tile: true, rx: 7, variant });
-  files[`${v}icons/icon-16.svg`] = markSVG({ size: 16, pad: 1.5, mode: "dark", traceLevel: 3, strokeW: 0, traceW: 1.5, dotR: 0.9, tile: true, rx: 3.5, prec: 1, variant });
-  files[`${v}mark/mark-dark.svg`] = markSVG({ size: 96, pad: 4, mode: "dark", traceLevel: 4, strokeW: 1.8, traceW: 2.6, dotR: 3.2, tile: false, variant });
-  files[`${v}mark/mark-light.svg`] = markSVG({ size: 96, pad: 4, mode: "light", traceLevel: 4, strokeW: 1.8, traceW: 2.6, dotR: 3.2, tile: false, variant });
-  files[`${v}logo/overcast-logo-light.svg`] = lockupSVG({ mode: "light", variant });
-  files[`${v}logo/overcast-logo-dark.svg`] = lockupSVG({ mode: "dark", variant });
+{
+  const variant: Variant = "prompt";
+  for (const d of ["icons", "logo", "mark"]) mkdirSync(join(OUT, d), { recursive: true });
+  files["icons/icon-96.svg"] = markSVG({ size: 96, pad: 11, mode: "dark", traceLevel: 4, strokeW: 1.6, traceW: 2.4, dotR: 3, tile: true, rx: 20, variant });
+  files["icons/icon-48.svg"] = markSVG({ size: 48, pad: 5, mode: "dark", traceLevel: 4, strokeW: 1.2, traceW: 1.7, dotR: 2, tile: true, rx: 10, variant });
+  files["icons/icon-32.svg"] = markSVG({ size: 32, pad: 3.5, mode: "dark", traceLevel: 3, strokeW: 1, traceW: 1.4, dotR: 1.5, tile: true, rx: 7, variant });
+  files["icons/icon-16.svg"] = markSVG({ size: 16, pad: 1.5, mode: "dark", traceLevel: 3, strokeW: 0, traceW: 1.5, dotR: 0.9, tile: true, rx: 3.5, prec: 1, variant });
+  files["mark/mark-dark.svg"] = markSVG({ size: 96, pad: 4, mode: "dark", traceLevel: 4, strokeW: 1.8, traceW: 2.6, dotR: 3.2, tile: false, variant });
+  files["mark/mark-light.svg"] = markSVG({ size: 96, pad: 4, mode: "light", traceLevel: 4, strokeW: 1.8, traceW: 2.6, dotR: 3.2, tile: false, variant });
+  files["logo/overcast-logo-light.svg"] = lockupSVG({ mode: "light", variant });
+  files["logo/overcast-logo-dark.svg"] = lockupSVG({ mode: "dark", variant });
 }
 
 // ---------- extended deliverables (prompt variant = primary) ----------
