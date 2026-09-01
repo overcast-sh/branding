@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overcast brand</title>
+<meta name="description" content="Brand assets for Overcast — the local AWS emulator. Logo, mark, icons, color, type, and the full guidelines.">
+<link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg">
+<link rel="alternate icon" href="./favicon/favicon.ico">
+<link rel="apple-touch-icon" href="./png/apple-touch-icon.png">
+<meta property="og:title" content="Overcast brand">
+<meta property="og:description" content="Brand assets for Overcast — the local AWS emulator.">
+<meta property="og:image" content="https://brand.overcast.sh/png/github-social-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="./design-system/fonts.css">
+<link rel="stylesheet" href="./design-system/tokens.css">
+<style>
+  /* Text-on-accent flips with the surface, same pattern tokens.css uses for
+   * everything else: media query carries the OS preference, data-theme
+   * overrides win in both directions. #1273C4 (on-light) wants white text;
+   * #5FB8FF (on-dark) is light enough to need the ink instead. */
+  :root { --page-on-accent: #FFFFFF; }
+  @media (prefers-color-scheme: dark) { :root { --page-on-accent: var(--oc-tile); } }
+  :root[data-theme="dark"] { --page-on-accent: var(--oc-tile); }
+  :root[data-theme="light"] { --page-on-accent: #FFFFFF; }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--oc-bg);
+    color: var(--oc-body);
+    font-family: var(--oc-font-sans);
+    line-height: 1.6;
+  }
+  main { max-width: 920px; margin: 0 auto; padding: var(--oc-space-7) var(--oc-space-5) 96px; }
+  a { color: inherit; }
+
+  /* hero */
+  .hero { text-align: center; padding-bottom: var(--oc-space-6); }
+  .hero img { width: 84px; height: 84px; }
+  .hero h1 {
+    font-family: var(--oc-font-mono);
+    font-weight: 700;
+    font-size: 40px;
+    letter-spacing: -0.03em;
+    color: var(--oc-text);
+    margin: var(--oc-space-4) 0 var(--oc-space-2);
+  }
+  .hero p.tagline {
+    font-family: var(--oc-font-sans);
+    color: var(--oc-muted);
+    font-size: 16px;
+    max-width: 46ch;
+    margin: 0 auto var(--oc-space-6);
+  }
+
+  /* buttons */
+  .actions { display: flex; flex-wrap: wrap; gap: var(--oc-space-3); justify-content: center; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--oc-font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: var(--oc-radius-control);
+    border: 1px solid transparent;
+    transition: transform var(--oc-hover), border-color var(--oc-hover), opacity var(--oc-hover);
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .btn-primary { background: var(--oc-accent); color: var(--page-on-accent); }
+  .btn-primary:hover { opacity: 0.92; }
+  .btn-ghost { background: var(--oc-card); color: var(--oc-text); border-color: var(--oc-line); }
+  .btn-ghost:hover { border-color: var(--oc-accent); }
+
+  /* section headings, guidelines-style */
+  h2 {
+    font-family: var(--oc-font-mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--oc-text);
+    margin: 64px 0 8px;
+  }
+  h2::before { content: "$ "; color: var(--oc-accent); }
+  section > p.lede { max-width: 64ch; color: var(--oc-muted); margin: 0 0 var(--oc-space-4); font-size: 14px; }
+
+  /* asset grid */
+  .grid { display: grid; gap: var(--oc-space-3); grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+  .asset-card {
+    background: var(--oc-card);
+    border: 1px solid var(--oc-line);
+    border-radius: var(--oc-radius-card);
+    padding: var(--oc-space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--oc-space-3);
+  }
+  .preview {
+    height: 96px;
+    border-radius: var(--oc-radius-control);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--oc-line);
+  }
+  .preview.on-light { background: #FFFFFF; }
+  .preview.on-dark { background: #10161D; }
+  .preview.on-tile { background: var(--oc-tile); }
+  .preview img { max-width: 70%; max-height: 64px; }
+  .asset-card .name {
+    font-family: var(--oc-font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--oc-text);
+  }
+  .asset-card .links { display: flex; flex-wrap: wrap; gap: 6px; }
+  .asset-card .links a {
+    font-family: var(--oc-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--oc-accent);
+    border: 1px solid var(--oc-line);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+  .asset-card .links a:hover { border-color: var(--oc-accent); background: var(--oc-accent-soft); }
+
+  /* builders row */
+  .builders { display: flex; flex-wrap: wrap; gap: var(--oc-space-2); }
+  .builders a {
+    font-family: var(--oc-font-mono);
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--oc-text);
+    background: var(--oc-card);
+    border: 1px solid var(--oc-line);
+    border-radius: var(--oc-radius-control);
+    padding: 8px 14px;
+  }
+  .builders a:hover { border-color: var(--oc-accent); color: var(--oc-accent); }
+
+  /* color strip */
+  .swatches { display: grid; gap: var(--oc-space-3); grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .swatch {
+    border: 1px solid var(--oc-line);
+    border-radius: var(--oc-radius-card);
+    overflow: hidden;
+    background: var(--oc-card);
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+  }
+  .swatch .chip { height: 56px; }
+  .swatch .meta { padding: 10px 12px; }
+  .swatch .meta b { display: block; font-size: 12px; color: var(--oc-text); }
+  .swatch .meta code {
+    font-family: var(--oc-font-mono);
+    font-size: 11px;
+    color: var(--oc-muted);
+  }
+
+  /* footer */
+  footer {
+    margin-top: 96px;
+    padding-top: var(--oc-space-5);
+    border-top: 1px solid var(--oc-line);
+    font-size: 13px;
+    color: var(--oc-muted);
+  }
+  footer p { margin: 4px 0; max-width: 72ch; }
+  footer a { color: var(--oc-accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<main>
+
+  <header class="hero">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./mark/mark-dark.svg">
+      <img src="./mark/mark-light.svg" alt="Overcast mark" width="84" height="84">
+    </picture>
+    <h1>overcast brand</h1>
+    <p class="tagline">Brand assets for Overcast — the local AWS emulator.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="./brand-guidelines.html">Guidelines</a>
+      <a class="btn btn-primary" href="./book/">Brand book</a>
+      <a class="btn btn-ghost" href="./overcast-brand-assets.zip" download>Download all (.zip)</a>
+    </div>
+  </header>
+
+  <section id="assets">
+    <h2>assets</h2>
+    <p class="lede">Logo, mark, icons, and loader — SVG for anything that scales, PNG where a
+    raster is handier. Never hand-edit these; they're generated from <code>gen.ts</code>.</p>
+    <div class="grid">
+
+      <div class="asset-card">
+        <div class="preview on-light"><img src="./logo/overcast-logo-light.svg" alt="Overcast logo, light"></div>
+        <div class="name">Logo — light</div>
+        <div class="links">
+          <a href="./logo/overcast-logo-light.svg" download>SVG</a>
+          <a href="./png/logo-light-900.png" download>PNG</a>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="preview on-dark"><img src="./logo/overcast-logo-dark.svg" alt="Overcast logo, dark"></div>
+        <div class="name">Logo — dark</div>
+        <div class="links">
+          <a href="./logo/overcast-logo-dark.svg" download>SVG</a>
+          <a href="./png/logo-dark-900.png" download>PNG</a>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="preview on-light"><img src="./mark/mark-light.svg" alt="Overcast mark, light"></div>
+        <div class="name">Mark — light</div>
+        <div class="links">
+          <a href="./mark/mark-light.svg" download>SVG</a>
+          <a href="./png/mark-light-384.png" download>PNG</a>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="preview on-dark"><img src="./mark/mark-dark.svg" alt="Overcast mark, dark"></div>
+        <div class="name">Mark — dark</div>
+        <div class="links">
+          <a href="./mark/mark-dark.svg" download>SVG</a>
+          <a href="./png/mark-dark-384.png" download>PNG</a>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="preview on-dark"><img src="./mark/mark-mono-white.svg" alt="Overcast mark, mono white"></div>
+        <div class="name">Mark — mono white</div>
+        <div class="links">
+          <a href="./mark/mark-mono-white.svg" download>SVG</a>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="preview on-light"><img src="./mark/mark-mono-ink.svg" alt="Overcast mark, mono ink"></div>
+        <div class="name">Mark — mono ink</div>
+        <div class="links">
+          <a href="./mark/mark-mono-ink.svg" download>SVG</a>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="preview on-tile"><img src="./icons/icon-96.svg" alt="Overcast tiled icon"></div>
+        <div class="name">Icon (16 – 256)</div>
+        <div class="links">
+          <a href="./icons/icon-256.svg" download>SVG</a>
+          <a href="./png/icon-256.png" download>PNG 256</a>
+          <a href="./png/icon-512.png" download>PNG 512</a>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="preview on-tile"><img src="./favicon/favicon.svg" alt="Overcast favicon"></div>
+        <div class="name">Favicon</div>
+        <div class="links">
+          <a href="./favicon/favicon.svg" download>SVG</a>
+          <a href="./favicon/favicon.ico" download>ICO</a>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="preview on-tile"><img src="./png/apple-touch-icon.png" alt="Apple touch icon" style="border-radius: 18%;"></div>
+        <div class="name">Apple touch icon</div>
+        <div class="links">
+          <a href="./png/apple-touch-icon.png" download>PNG</a>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="preview on-dark"><img src="./social/github-social-card.svg" alt="Social preview card" style="max-width: 90%;"></div>
+        <div class="name">Social card</div>
+        <div class="links">
+          <a href="./social/github-social-card.svg" download>SVG</a>
+          <a href="./png/github-social-card.png" download>PNG</a>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="preview on-dark"><img src="./loading/overcast-loader.svg" alt="Overcast loader"></div>
+        <div class="name">Loader</div>
+        <div class="links">
+          <a href="./loading/overcast-loader.svg" download>SVG</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="builders">
+    <h2>builders</h2>
+    <p class="lede">Drop these into a project. <code>tokens.json</code> is the source of truth —
+    the rest are generated from it.</p>
+    <div class="builders">
+      <a href="./design-system/tokens.css" download>tokens.css</a>
+      <a href="./design-system/tokens.json" download>tokens.json</a>
+      <a href="./design-system/tokens.tailwind.css" download>tokens.tailwind.css</a>
+      <a href="./design-system/tailwind.preset.ts" download>tailwind.preset.ts</a>
+      <a href="./design-system/fonts.css" download>fonts.css</a>
+      <a href="./fonts/JetBrainsMono-Regular.ttf" download>JetBrains Mono — Regular</a>
+      <a href="./fonts/JetBrainsMono-Bold.ttf" download>JetBrains Mono — Bold</a>
+    </div>
+  </section>
+
+  <section id="colors">
+    <h2>color</h2>
+    <p class="lede">Click a swatch to copy its hex. The accent always switches with the surface —
+    Signal light on light grounds, Signal dark on dark grounds.</p>
+    <div class="swatches" id="swatch-grid">
+      <button class="swatch" data-hex="#16222E"><div class="chip" style="background:#16222E"></div><div class="meta"><b>Ink</b><code>#16222E</code></div></button>
+      <button class="swatch" data-hex="#10161D"><div class="chip" style="background:#10161D"></div><div class="meta"><b>Night</b><code>#10161D</code></div></button>
+      <button class="swatch" data-hex="#33536F"><div class="chip" style="background:#33536F"></div><div class="meta"><b>Cloud slate</b><code>#33536F</code></div></button>
+      <button class="swatch" data-hex="#C4D8EA"><div class="chip" style="background:#C4D8EA"></div><div class="meta"><b>Cloud mist</b><code>#C4D8EA</code></div></button>
+      <button class="swatch" data-hex="#5FB8FF"><div class="chip" style="background:#5FB8FF"></div><div class="meta"><b>Signal (dark)</b><code>#5FB8FF</code></div></button>
+      <button class="swatch" data-hex="#1273C4"><div class="chip" style="background:#1273C4"></div><div class="meta"><b>Signal (light)</b><code>#1273C4</code></div></button>
+      <button class="swatch" data-hex="#8FD0FF"><div class="chip" style="background:#8FD0FF"></div><div class="meta"><b>Cursor glow</b><code>#8FD0FF</code></div></button>
+      <button class="swatch" data-hex="#7FA8C9"><div class="chip" style="background:#7FA8C9"></div><div class="meta"><b>Mist text</b><code>#7FA8C9</code></div></button>
+    </div>
+  </section>
+
+  <footer>
+    <p>The Overcast name, logomark, and visual brand assets are © the Overcast project — all
+    rights reserved. Use unmodified assets to refer to Overcast; don't modify them or use them
+    to imply endorsement. Generator and pipeline scripts are MIT licensed. Fonts (JetBrains Mono)
+    are SIL OFL. Full text in
+    <a href="https://github.com/overcast-sh/branding/blob/main/LICENSE.md">LICENSE.md</a>.</p>
+    <p><a href="https://github.com/overcast-sh/branding">overcast-sh/branding</a> on GitHub.</p>
+  </footer>
+
+</main>
+<script>
+  // Click-to-copy on color swatches — falls back to a selectable text
+  // highlight when the Clipboard API isn't available (e.g. insecure origin).
+  document.getElementById("swatch-grid").addEventListener("click", async (e) => {
+    const btn = e.target.closest(".swatch");
+    if (!btn) return;
+    const hex = btn.dataset.hex;
+    const label = btn.querySelector(".meta b");
+    const original = label.textContent;
+    const timeout = (ms) => new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), ms));
+    try {
+      await Promise.race([navigator.clipboard.writeText(hex), timeout(800)]);
+      label.textContent = "Copied " + hex;
+    } catch {
+      label.textContent = hex + " (select to copy)";
+    }
+    setTimeout(() => { label.textContent = original; }, 1200);
+  });
+</script>
+</body>
+</html>
