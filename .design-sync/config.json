@@ -1,0 +1,40 @@
+{
+  "projectId": "58f31f6e-e6eb-4ad8-8c6f-baee7cba391e",
+  "pkg": "@overcast-sh/branding",
+  "globalName": "OvercastBranding",
+  "shape": "package",
+  "entry": "design-system/react/index.ts",
+  "srcDir": "design-system/react",
+  "buildCmd": "node design-system/react/embed.mjs",
+  "componentSrcMap": {
+    "Logo": "design-system/react/Logo.tsx",
+    "Mark": "design-system/react/Mark.tsx",
+    "Icon": "design-system/react/Icon.tsx",
+    "Loader": "design-system/react/Loader.tsx",
+    "Row": "design-system/react/brandbook.tsx",
+    "Card": "design-system/react/brandbook.tsx",
+    "Swatch": "design-system/react/brandbook.tsx",
+    "Type": "design-system/react/brandbook.tsx",
+    "Do": "design-system/react/brandbook.tsx"
+  },
+  "cssEntry": "design-system/tokens.css",
+  "extraFonts": [".design-sync/fonts.css"],
+  "runtimeFontPrefixes": ["Cascadia Code"],
+  "overrides": {
+    "Logo": { "cardMode": "column" }
+  },
+  "docsDir": ".design-sync/docs",
+  "guidelinesGlob": ["AGENTS.md"],
+  "readmeHeader": ".design-sync/conventions.md",
+  "dtsPropsFor": {
+    "Logo": "/** Surface the logo sits on: `light` (default) or `dark`. */ variant?: \"light\" | \"dark\"; /** Rendered height in px; width follows the 300:64 intrinsic ratio. Default 40. */ height?: number; /** Accessible name. Default \"Overcast\". */ ariaLabel?: string;",
+    "Mark": "/** `light` (default) / `dark` full-color, or `mono-ink` / `mono-white` single-color. */ variant?: \"light\" | \"dark\" | \"mono-ink\" | \"mono-white\"; /** Rendered size in px (square). Minimum 24. Default 96. */ size?: number; /** Accessible name. Default \"Overcast\". */ ariaLabel?: string;",
+    "Icon": "/** Rendered size in px (square); snaps to the nearest generated asset ≥ size (16/32/48/96/256). Default 32. */ size?: number; /** Accessible name. Default \"Overcast\". */ ariaLabel?: string;",
+    "Loader": "/** Rendered size in px (square). Default 96. */ size?: number; /** Accessible name. Default \"Loading…\". */ ariaLabel?: string;",
+    "Row": "children: React.ReactNode; /** Gap between items in px. Default 16. */ gap?: number;",
+    "Card": "children: React.ReactNode; /** Mono-font caption below the content. */ label?: string; /** `card` (default, theme-following), `light` (pinned white), or `dark` (pinned ink). */ surface?: \"card\" | \"dark\" | \"light\"; /** Inner padding in px. Default 20. */ pad?: number;",
+    "Swatch": "/** Display name of the color. */ name: string; /** Hex value, shown in the brand mono. */ hex: string; /** One-line usage note. */ use: string;",
+    "Type": "/** Role label, e.g. \"heading / mono\". */ role: string; /** Inline styles rendering the sample (build from the type tokens). */ css: React.CSSProperties; /** Specimen text. */ sample: string; /** Short note shown next to the role. */ note: string;",
+    "Do": "/** true renders a ✓ (success), false a ✗ (danger). */ good: boolean; children: React.ReactNode;"
+  }
+}
