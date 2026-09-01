@@ -41,24 +41,30 @@ jobs:
             exit 1
           fi
 
+      # The Storybook brand book is mounted at /book/, not the site root —
+      # it builds to relative asset paths, so it's fully relocatable.
       - name: Build brand book
         env:
           STORYBOOK_DISABLE_TELEMETRY: 1
-        run: npm run build-storybook
+        run: npm run build-storybook -- -o dist-site/book
 
-      # The deployed site is the Storybook brand book, plus the standalone
-      # guidelines page and the raw asset directories so files can be
-      # hotlinked directly (e.g. /logo/overcast-logo-dark.svg).
+      # The deployed site is: the hand-authored landing page at /, the
+      # Storybook brand book at /book/, the standalone guidelines page, and
+      # the raw asset directories so files can be hotlinked directly (e.g.
+      # /logo/overcast-logo-dark.svg) or downloaded as one zip.
       - name: Assemble site
         run: |
-          cp brand-guidelines.html storybook-static/
-          cp -r logo mark icons png favicon social loading fonts design-system storybook-static/
+          cp site/index.html dist-site/index.html
+          cp brand-guidelines.html dist-site/
+          cp -r logo mark icons png favicon social loading fonts design-system dist-site/
+          zip -r dist-site/overcast-brand-assets.zip \
+            logo mark icons png favicon social loading fonts design-system LICENSE.md
 
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: storybook-static
+          path: dist-site
 
   deploy:
     name: Deploy brand book

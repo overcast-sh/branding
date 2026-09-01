@@ -1,5 +1,6 @@
 node_modules/
 storybook-static/
+dist-site/
 
 # design-sync (staged scripts, build output, machine state)
 .ds-sync/
