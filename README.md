@@ -8,6 +8,9 @@
 
 # Overcast branding
 
+**[brand.overcast.sh](https://brand.overcast.sh)** — the brand landing page: guidelines, brand
+book, and every asset, downloadable individually or as one zip.
+
 Brand assets for [Overcast](https://overcast.sh) — the local AWS emulator.
 
 The mark: a cloud grounded on a flat baseline with a shell prompt `>_` inside —
