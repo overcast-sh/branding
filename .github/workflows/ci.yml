@@ -1,0 +1,80 @@
+name: CI and brand book
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Generated assets in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # Everything visual is generated. Rebuild it all and fail if the
+      # committed outputs disagree with what the generator produces — the
+      # repo must never ship artwork its own pipeline would not draw.
+      - name: Regenerate assets
+        run: |
+          npm run build
+          node design-system/react/embed.mjs
+
+      - name: Fail on drift
+        run: |
+          git diff --exit-code
+          untracked="$(git status --porcelain)"
+          if [ -n "$untracked" ]; then
+            echo "::error::The generator produced files that are not committed:"
+            echo "$untracked"
+            exit 1
+          fi
+
+      - name: Build brand book
+        env:
+          STORYBOOK_DISABLE_TELEMETRY: 1
+        run: npm run build-storybook
+
+      # The deployed site is the Storybook brand book, plus the standalone
+      # guidelines page and the raw asset directories so files can be
+      # hotlinked directly (e.g. /logo/overcast-logo-dark.svg).
+      - name: Assemble site
+        run: |
+          cp brand-guidelines.html storybook-static/
+          cp -r logo mark icons png favicon social loading fonts design-system storybook-static/
+
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: storybook-static
+
+  deploy:
+    name: Deploy brand book
+    needs: check
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
