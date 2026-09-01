@@ -1,3 +1,11 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="logo/overcast-logo-dark.svg">
+    <img alt="Overcast" src="logo/overcast-logo-light.svg" width="360">
+  </picture>
+</p>
+<p align="center"><em>Brand assets for Overcast — the local AWS emulator.</em></p>
+
 # Overcast branding
 
 Brand assets for [Overcast](https://overcast.sh) — the local AWS emulator.
