@@ -60,6 +60,7 @@
   th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); }
   th { color: var(--ink); font-family: var(--mono); font-weight: 600; font-size: 12px; }
   td code { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  a { color: var(--accent); }
   .rule { display: flex; gap: 10px; align-items: baseline; margin: 6px 0; }
   .rule .ok { color: #2E9E6B; font-family: var(--mono); }
   .rule .no { color: #C9564A; font-family: var(--mono); }
@@ -165,6 +166,17 @@
   <div class="rule"><span class="no">✗</span> Don't scale large SVGs down below their design size — swap to the smaller icon.</div>
   <div class="rule"><span class="no">✗</span> Don't set the wordmark in a proportional font or capitalize it.</div>
   <div class="rule"><span class="no">✗</span> Don't use orange or add radio/sound waves — that's Overcast.fm's (the podcast app) territory. Our cloud is navy, grounded, and carries a prompt.</div>
+
+  <h2 id="third-party-marks">third-party marks</h2>
+  <p>Overcast names AWS and its services only to state compatibility, and only in plain text. That is the
+  line AWS draws itself: nominative use "should be in plain text only (no logos)"
+  (<a href="https://aws.amazon.com/trademark-guidelines/">AWS Trademark Guidelines</a> §13), and imitating
+  AWS trade dress, including its "product icons", is prohibited (§10). The
+  <a href="https://aws.amazon.com/architecture/icons/">AWS Architecture Icons</a> ship with no licence and
+  are offered for diagrams, not product UIs.</p>
+  <div class="rule"><span class="ok">✓</span> Say "AWS-compatible", "local AWS emulator", "compatible with Amazon S3"; where a disclaimer belongs: "not affiliated with or endorsed by Amazon Web Services".</div>
+  <div class="rule"><span class="ok">✓</span> Service icons are lucide or original glyphs, coloured from Overcast's own categorical ramp.</div>
+  <div class="rule"><span class="no">✗</span> No AWS service icons or logos on any Overcast surface, not even behind an opt-in — and no original glyphs drawn to resemble them.</div>
 
   <h2>files</h2>
   <table>

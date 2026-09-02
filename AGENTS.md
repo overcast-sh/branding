@@ -36,6 +36,13 @@ holds the tokens. SVGs and PNGs are build outputs.
 8. **Size discipline:** never scale a large SVG down; use the per-size icons
    (they reduce detail and snap to the pixel grid). Minimum 24px for the bare
    mark, 16px for the tiled icon. Clearspace = the chevron's height.
+9. **Third-party marks.** No AWS service icons or logos on any surface,
+   not even opt-in, and no lookalikes: AWS Trademark Guidelines §13 limits
+   nominative use to plain text (no logos) and §10 forbids imitating AWS
+   product icons / trade dress. Service icons are lucide or original glyphs on
+   Overcast's own categorical ramp; name AWS in plain text only
+   ("AWS-compatible", "local AWS emulator"). See `brand-guidelines.html`
+   § third-party marks.
 
 ## Geometry (if you touch `gen.ts`)
 
