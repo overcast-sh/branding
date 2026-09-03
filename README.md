@@ -25,7 +25,7 @@ It renders in light and dark mode.
 | Need | File |
 | --- | --- |
 | README / website header | `logo/overcast-logo-{light,dark}.svg` |
-| GitHub org avatar | `png/icon-256.png` |
+| GitHub org avatar | `png/icon-512.png` |
 | Repo social preview | `png/github-social-card.png` |
 | Favicon (modern) | `favicon/favicon.svg` |
 | Favicon (legacy) | `favicon/favicon.ico` |
